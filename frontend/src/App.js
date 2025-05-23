@@ -1,12 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import Footer from "./components/footer";
+import Navbar from "./components/navbar";
+import Packs from "./components/packs";
+import ServicesSection from "./components/servicesSection";
+import Home from "./pages/home";
+
 
 function App() {
   return (
-    <div className=" flex justify-center items-center h-screen w-full bg-blue-100">
-      <div className=' bg-red-600 '>
-        hello
-      </div>
+    <div className=" flex flex-col ">
+      <Navbar />
+      <Home />
+      <ServicesSection />
+      <Packs />
+      <Footer />
     </div>
   );
 }
