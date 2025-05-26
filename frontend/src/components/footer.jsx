@@ -20,12 +20,15 @@ export default function Footer() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
             </div>
-            <div className="md:w-1/2 relative min-h-[300px]">
+            <div className=" relative md:w-1/2 relative min-h-[300px]">
               <img
-                src="/placeholder.svg?height=400&width=500"
+                src="./14.png"
                 alt="Happy wedding couple"
+                width={350}
+                height={350}
                 fill
-                className="object-cover object-center"
+                className="
+                 absolute right-0 -top-20 rounded-3xl shadow-lg"
               />
               {/* Decorative elements */}
               <div className="absolute top-10 right-10 w-12 h-12 rounded-full bg-white opacity-10"></div>

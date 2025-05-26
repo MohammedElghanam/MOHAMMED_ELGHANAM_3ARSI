@@ -1,73 +1,116 @@
-import { Heart } from 'lucide-react';
+import { Megaphone } from 'lucide-react';
+import { motion, useAnimation  } from "framer-motion";
+import { useEffect } from "react";
 
 export default function Home() {
+
+//     const controls = useAnimation();
+
+//   useEffect(() => {
+//     controls.start({
+//       x: 0,
+//       opacity: 1,
+//       transition: { duration: 1.2, ease: "easeOut" },
+//     }).then(() => {
+//       // simulate impact like car crash - bounce back
+//       controls.start({
+//         x: [0, -20, 10, -5, 0], // forward, bounce back, settle
+//         transition: { duration: 0.8, ease: "easeInOut" },
+//       });
+//     });
+//   }, [controls]);
+
   return (
     <>
-        <main className=" relative container mx-auto px-4 py-12">
-            <div className="absolute top-50 left-1/2 w-[300px] h-[300px] -z-10 bg-pink-500 rounded-full opacity-30 -translate-x-[10%] -translate-y-1/3 blur-[120px]"> h</div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-                <h2 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
-                Crafting
-                <br />
-                Everlasting
-                <br />
-                Moments
-                </h2>
-                <p className="text-xl text-gray-700">
-                Let Us Turn Your Special Day
-                <br />
-                Into an Unforgettable Memory.
-                </p>
-                <div className="flex items-center">
-                <a
-                    href="#book"
-                    className="flex items-center bg-red-400 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-medium transition-colors"
-                >
-                    Book A Wedding
-                </a>
-                <div className="ml-4 bg-red-400 p-4 rounded-full flex items-center justify-center">
-                    <Heart className="h-6 w-6 text-white" />
+        <main className=" relative ">
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 h-full items-center ">
+
+                <div className="space-y-8 col-span-1 lg:col-span-1 h-full flex flex-col justify-center items-start px-10 lg:px-20">
+                    <h2 className="text-5xl md:text-8xl font-semibold text-gray-900 leading-tight"> Création <br /> de moments <br /> éternels </h2> 
+                    <p className="text-2xl text-gray-900"> Laissez-nous transformer votre journée spéciale <br /> en un souvenir inoubliable. </p>
+                    <div className="flex items-center">
+                    <a
+                        href="#book"
+                        className="flex items-center bg-red-400 hover:bg-red-500 text-white px-8 py-4 rounded-full text-lg font-medium transition-colors"
+                    >
+                        Réserver un mariage
+                    </a>
+                    </div>
                 </div>
+                <div className="relative col-span-1 h-full flex items-center justify-center pt-52">
+                    <div className=" w-[300px] h-[300px] -z-10 bg-pink-500 rounded-full opacity-60 -translate-x-[10%] -translate-y-1/3 blur-[140px]"></div>
+                    
+                    <motion.div
+                        initial={{ scale: 0.5, opacity: 0, y: 50 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        transition={{ type: "spring", stiffness: 100, damping: 10 }}
+                        className="absolute top-10 left-16 bg-white rounded-lg p-4 shadow-lg border border-gray-400 z-10"
+                        >
+                        <div className="text-5xl font-bold text-gray-700">10k+</div>
+                        <div className="text-gray-600">Wedding Hosts</div>
+                        <div className="mt-2">
+                            <img
+                            src="/4.jpg"
+                            width={200}
+                            height={50}
+                            alt="Wedding ceremony"
+                            className="rounded-lg object-cover"
+                            />
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ x: -300, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ type: "spring", stiffness: 100, damping: 10 }}
+                        className="absolute bottom-[135px] left-[100px] flex items-center justify-center gap-4 bg-white rounded-lg border border-pink-500 p-4 bg-opacity-50"
+                        >
+                        <Megaphone className="w-8 h-8 text-pink-500" />
+                        <div>
+                            <div className="text-xl font-bold text-gray-700">1978</div>
+                            <div className="text-gray-600 text-sm">
+                            We&apos;re in the Market Since
+                            </div>
+                        </div>
+                    </motion.div>
+
+
+                    <motion.div
+                        initial={{ x: 300, opacity: 0 }} 
+                        animate={{ x: 0, opacity: 1 }} 
+                        transition={{ type: "spring", stiffness: 100, damping: 10 }} 
+                        className="absolute top-[120px] right-[185px] flex items-center justify-center gap-4 bg-white rounded-lg border border-[#7F55B1] p-4 bg-opacity-50"
+                        >
+                        <Megaphone className="w-8 h-8 text-[#7F55B1]" />
+                        <div>
+                            <div className="text-xl font-bold text-gray-700">1978</div>
+                            <div className="text-gray-600 text-sm">
+                            We&apos;re in the Market Since
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ scale: 0.5, opacity: 0, y: 50 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        transition={{ type: "spring", stiffness: 100, damping: 10 }}
+                        className="absolute bottom-10 right-[150px] bg-white rounded-lg p-4 shadow-lg border border-gray-400 "
+                        >
+                        <div className="text-5xl font-bold text-gray-700">+300</div>
+                        <div className="text-gray-600">More than 300 weddings</div>
+                        <div className="mt-2">
+                            <img
+                            src="/5.jpg"
+                            width={200}
+                            height={10}
+                            alt="Wedding ceremony"
+                            className="rounded-lg object-cover"
+                            />
+                        </div>
+                    </motion.div>
+                    
                 </div>
-                <div className="relative mt-12">
-                <div className="border-t border-dashed border-pink-300 w-64"></div>
-                <div className="absolute -top-2 right-0">
-                    <Heart className="h-4 w-4 text-pink-400" />
-                </div>
-                </div>
-            </div>
-            <div className="relative">
-                <img
-                src="/newlyweds1.png"
-                width={500}
-                height={600}
-                alt="Wedding couple"
-                className="rounded-lg mx-auto"
-                priority
-                />
-                <div className="absolute top-8 right-0 bg-white rounded-lg p-4 shadow-lg">
-                <div className="text-5xl font-bold text-gray-900">10k+</div>
-                <div className="text-gray-600">Wedding Hosts</div>
-                <div className="mt-2">
-                    <img
-                    src="/newlyweds1.png"
-                    width={150}
-                    height={100}
-                    alt="Wedding ceremony"
-                    className="rounded-lg"
-                    />
-                </div>
-                </div>
-                <div className="absolute bottom-8 right-0 bg-white rounded-lg p-4 shadow-lg">
-                <div className="text-5xl font-bold text-gray-900">1978</div>
-                <div className="text-gray-600">
-                    We&apos;re in the
-                    <br />
-                    Market Since
-                </div>
-                </div>
-            </div>
             </div>
         </main>
     </>

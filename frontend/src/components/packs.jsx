@@ -8,13 +8,13 @@ export default function Packs() {
         <div className="flex items-center mt-4 md:mt-0">
           <div className="flex -space-x-2 mr-3">
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
-              <img src="/placeholder.svg?height=40&width=40" alt="Client" width={40} height={40} />
+              <img src="./users/2.avif" alt="Client" width={40} height={40} />
             </div>
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
-              <img src="/placeholder.svg?height=40&width=40" alt="Client" width={40} height={40} />
+              <img src="./users/8.avif" alt="Client" width={40} height={40} />
             </div>
             <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
-              <img src="/placeholder.svg?height=40&width=40" alt="Client" width={40} height={40} />
+              <img src="./users/1.avif" alt="Client" width={40} height={40} />
             </div>
           </div>
           <span className="text-lg font-semibold">520k Happy Clients</span>
