@@ -21,19 +21,18 @@ export default function Navbar() {
                                 <a href="#" class="text-gray-600 text-sm font-semibold hover:text-pink-500">PORTFLIO</a>
                             </div>
 
-                        <div className=" relative flex items-center justify-center">
+                        <a href='/login' className=" relative flex items-center justify-center">
                             <div className=" w-8 h-2 bg-white absolute right-10"></div>
-                            <a
-                                href="#"
+                            <p
                                 className="text-gray-800 text-sm font-semibold border px-10 py-3 rounded-full text-pink-500 border-pink-500 bg-white"
                             >
                                 Sign up
-                            </a>
+                            </p>
 
                             <div className="w-12 h-12 rounded-full border text-pink-500 border-pink-500 flex items-center justify-center bg-white -ml-[1.5px]">
                                 <ArrowRight className="w-5 h-5 text-pink-500" />
                             </div>
-                        </div>
+                        </a>
 
                     </div>
                 </div>
