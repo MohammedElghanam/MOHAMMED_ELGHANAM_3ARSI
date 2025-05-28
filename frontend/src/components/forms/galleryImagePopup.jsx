@@ -1,28 +1,17 @@
 import React, { useState } from "react"
 import { X, Upload, ImageIcon } from "lucide-react"
+import useImage from "../../hooks/useImage"
 
 export default function GalleryImagePopup({ onClose }) {
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [imagePreview, setImagePreview] = useState(null)
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      setSelectedImage(file)
-      setImagePreview(URL.createObjectURL(file))
-    }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (selectedImage && imagePreview) {
-    //   onSubmit({
-    //     url: imagePreview,
-    //     name: selectedImage.name,
-    //   })
-      onClose()
-    }
-  }
+  
+    const {
+        selectedImage,
+        setSelectedImage,
+        imagePreview,
+        setImagePreview,
+        handleImageUpload,
+        handleSubmit,
+    } = useImage(onClose);
 
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4">

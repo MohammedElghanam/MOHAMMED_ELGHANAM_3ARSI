@@ -1,31 +1,14 @@
-"use client"
-
-import { useState } from "react"
 import { X, Calendar, MapPin, Phone, Users } from "lucide-react"
+import useMariage from "../../hooks/useMariage"
 
 export function CreateWeddingForm({ onClose }) {
-  const [formData, setFormData] = useState({
-    nomMariee: "",
-    nomMarie: "",
-    date: "",
-    lieu: "",
-    ville: "",
-    telephone: "",
-    invites: "",
-    pack: "",
-  })
-
-  const packs = [
-    { id: "basic", name: "Pack Basique", price: 5000 },
-    { id: "premium", name: "Pack Premium", price: 8000 },
-    { id: "luxury", name: "Pack Luxe", price: 12000 },
-  ]
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log("Données du mariage:", formData)
-    onClose()
-  }
+  
+    const {
+        formData,
+        setFormData,
+        packs,
+        handleSubmit,
+    } = useMariage(onClose);
 
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4">

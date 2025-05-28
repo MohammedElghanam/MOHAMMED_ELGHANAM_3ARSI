@@ -1,24 +1,13 @@
-import React, { useState } from "react"
 import { X } from "lucide-react"
+import useService from "../../hooks/useService"
 
 export default function CreateServicePopup({ onClose, serviceTypes }) {
-  const [formData, setFormData] = useState({
-    nom: "",
-    type: "",
-    telephone: "",
-    tarif: "",
-  })
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (formData.nom && formData.type && formData.telephone && formData.tarif) {
-    //   onSubmit({
-    //     ...formData,
-    //     tarif: parseInt(formData.tarif),
-    //   })
-      onClose()
-    }
-  }
+  
+    const {
+        formData,
+        setFormData,
+        handleSubmit,
+    } = useService(onClose);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">

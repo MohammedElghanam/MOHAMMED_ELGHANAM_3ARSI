@@ -2,13 +2,22 @@
 import { useState } from "react"
 
 import { Heart, Mail, Lock } from "lucide-react"
+import useLogin from "../hooks/useLogin"
 
 
 export function LoginPage() {
   
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [error, setError] = useState("")
+    const {
+        email,
+        setEmail,
+        password,
+        setPassword,
+        error,
+        setError,
+        loading,
+        setLoading,
+        handleSubmit
+    } = useLogin();
 
 
   return (
