@@ -20,12 +20,6 @@ class ServiceController extends Controller implements HasMiddleware
     /**
      * Display a listing of the resource.
      */
-    // public function index(Request $request)
-    // {
-    //     $services = $request->user()->services()->get();
-
-    //     return response()->json($services);
-    // }
     public function index(Request $request)
     {
         if (!$request->user()) {
