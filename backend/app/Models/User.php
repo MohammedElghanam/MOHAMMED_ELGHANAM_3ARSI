@@ -64,4 +64,12 @@ class User extends Authenticatable
         return $this->hasMany(GalleryVideo::class);
     }
 
+    public function mariages() {
+        return $this->hasMany(Mariage::class);
+    }
+
+    public function packages() {
+        return $this->hasMany(Package::class);
+    }
+
 }
