@@ -9,14 +9,13 @@ export function LoginPage() {
   
     const {
         email,
-        setEmail,
-        password,
-        setPassword,
-        error,
-        setError,
-        loading,
-        setLoading,
-        handleSubmit
+      setEmail,
+      password,
+      setPassword,
+      errors,
+      errorPopup,
+      isLoading,
+      handleSubmit,
     } = useLogin();
 
 
@@ -26,14 +25,14 @@ export function LoginPage() {
         <header className="text-center mb-8">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <Heart className="h-8 w-8 text-pink-600" />
-            <span className="text-2xl font-bold text-gray-900">3ARSI</span>
+            <span className="text-2xl font-bold text-gray-900">3ARSI_BI_CLICK</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Connexion</h1>
           <p className="text-gray-600">Connectez-vous à votre compte pour accéder à votre espace personnel</p>
         </header>
 
         <form 
-            // onSubmit={handleSubmit}  
+            onSubmit={handleSubmit}  
             className="space-y-6">
           <div className="space-y-2">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -51,6 +50,9 @@ export function LoginPage() {
                 required
               />
             </div>
+            {errors.email && (
+              <p className="text-sm text-red-500">{errors.email}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -69,17 +71,17 @@ export function LoginPage() {
                 required
               />
             </div>
+            {errors.password && (
+              <p className="text-sm text-red-500">{errors.password}</p>
+            )}
           </div>
-
-          {error && <div className="text-red-600 text-sm text-center">{error}</div>}
 
           <button
             type="submit"
             className="w-full py-2 px-4 bg-pink-600 text-white rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 disabled:opacity-50 transition-colors"
-            // disabled={isLoading}
+            disabled={isLoading}
           >
-            {/* {isLoading ? "Connexion..." : "Se connecter"} */}
-            Se connecter
+            {isLoading ? "Connexion..." : "Se connecter"}
           </button>
         </form>
 
@@ -101,6 +103,11 @@ export function LoginPage() {
             Retour à l'accueil
           </a>
         </div>
+        {errorPopup && (
+          <div className="bg-red-100 text-red-700 p-3 rounded mb-4">
+            {errorPopup}
+          </div>
+        )}
       </div>
     </div>
   )

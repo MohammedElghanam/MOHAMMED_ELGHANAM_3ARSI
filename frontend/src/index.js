@@ -5,6 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((registration) => {
+      registration.unregister().then(() => {
+        console.log('Service worker unregistered');
+      });
+    });
+  });
+}
+
 root.render(
   <React.StrictMode>
     <App />

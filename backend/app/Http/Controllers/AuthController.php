@@ -56,8 +56,6 @@ class AuthController extends Controller
                     'error' => 'Invalid credentials. Please try again.'
                 ], 401);
             }
-        } else {
-            abort(200);
         }
     }
 

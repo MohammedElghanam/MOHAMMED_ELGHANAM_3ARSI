@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Plus, FileText, Briefcase, Calendar, MapPin, Phone } from "lucide-react";
 import { CreatePostPopup } from './createPostPopup'
 import CreateServicePopup from "./createServicePopup";
+import CardServices from "../cardServices";
+import CardPosts from "../cardPosts";
 
 const serviceTypes = [
   "neggafa",
@@ -136,8 +138,9 @@ export default function ProviderDashboard() {
             Créer Post
           </button>
         </div>
-        <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {posts.map((post) => (
+        <div >
+          <CardPosts />
+          {/* {posts.map((post) => (
             <div key={post.id} className="border rounded overflow-hidden">
               <img src={post.image} alt="Post" className="w-full h-48 object-cover" />
               <div className="p-4">
@@ -145,7 +148,7 @@ export default function ProviderDashboard() {
                 <p className="text-xs text-gray-400">Publié le {post.date}</p>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
 
@@ -164,8 +167,9 @@ export default function ProviderDashboard() {
             Créer Service
           </button>
         </div>
-        <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          {services.map((service) => (
+        <div >
+          <CardServices />
+          {/* {services.map((service) => (
             <div key={service.id} className="border rounded p-4">
               <div className="flex justify-between mb-2">
                 <h3 className="font-semibold">{service.nom}</h3>
@@ -178,7 +182,7 @@ export default function ProviderDashboard() {
                 <strong>Téléphone:</strong> {service.telephone}
               </p>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
 

@@ -9,7 +9,9 @@ export function CreatePostPopup({ onClose }) {
         setImagePreview,
         handleImageUpload,
         handleSubmit,
-    } = usePost({ onClose });
+        errors,
+        isLoading,
+    } = usePost( onClose );
 
   
   return (
@@ -97,6 +99,7 @@ export function CreatePostPopup({ onClose }) {
                   </div>
                 )}
               </div>
+              {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
             </div>
 
             <div className="space-y-2">
@@ -115,16 +118,17 @@ export function CreatePostPopup({ onClose }) {
                 onChange={(e) =>
                   setFormData({ ...formData, description: e.target.value })
                 }
-                required
               />
+              {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
             </div>
 
             <div className="flex gap-2">
               <button
                 type="submit"
                 className="flex-1 rounded bg-blue-500 py-2 text-white hover:bg-blue-600"
+                disabled={isLoading}
               >
-                Publier
+                {isLoading ? "Publier ..." : "Publier"}
               </button>
               <button
                 type="button"

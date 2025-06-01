@@ -7,6 +7,9 @@ export default function CreateServicePopup({ onClose, serviceTypes }) {
         formData,
         setFormData,
         handleSubmit,
+        errors,
+        isLoading,
+        errorPopup,
     } = useService(onClose);
 
   return (
@@ -24,18 +27,18 @@ export default function CreateServicePopup({ onClose, serviceTypes }) {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="nom" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
               Nom du Service
             </label>
             <input
-              id="nom"
+              id="name"
               type="text"
-              value={formData.nom}
-              onChange={(e) => setFormData({ ...formData, nom: e.target.value })}
-              required
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="Ex: Traiteur Premium"
               className="mt-1 block w-full border border-gray-300 rounded-md p-2"
             />
+            {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
           </div>
 
           <div>
@@ -45,7 +48,6 @@ export default function CreateServicePopup({ onClose, serviceTypes }) {
             <select
               value={formData.type}
               onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-              required
               className="mt-1 block w-full border border-gray-300 rounded-md p-2"
             >
               <option value="" disabled>Sélectionnez le type</option>
@@ -55,44 +57,46 @@ export default function CreateServicePopup({ onClose, serviceTypes }) {
                 </option>
               ))}
             </select>
+            {errors.type && <p className="text-red-500 text-sm">{errors.type}</p>}
           </div>
 
           <div>
-            <label htmlFor="telephone" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
               Téléphone
             </label>
             <input
-              id="telephone"
+              id="phone"
               type="tel"
-              value={formData.telephone}
-              onChange={(e) => setFormData({ ...formData, telephone: e.target.value })}
-              required
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               placeholder="+212 6 12 34 56 78"
               className="mt-1 block w-full border border-gray-300 rounded-md p-2"
             />
+            {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
           </div>
 
           <div>
-            <label htmlFor="tarif" className="block text-sm font-medium text-gray-700">
-              Tarif (€)
+            <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+              Tarif (dh)
             </label>
             <input
-              id="tarif"
+              id="price"
               type="number"
-              value={formData.tarif}
-              onChange={(e) => setFormData({ ...formData, tarif: e.target.value })}
-              required
+              value={formData.price}
+              onChange={(e) => setFormData({ ...formData, price: e.target.value })}
               placeholder="500"
               className="mt-1 block w-full border border-gray-300 rounded-md p-2"
             />
+            {errors.price && <p className="text-red-500 text-sm">{errors.price}</p>}
           </div>
 
           <div className="flex gap-2">
             <button
               type="submit"
               className="flex-1 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+              disabled={isLoading}
             >
-              Créer Service
+              {isLoading ? "Création du service..." : "Créer Service"}
             </button>
             <button
               type="button"
@@ -103,6 +107,11 @@ export default function CreateServicePopup({ onClose, serviceTypes }) {
             </button>
           </div>
         </form>
+        {errorPopup && (
+          <div className="bg-red-100 text-red-700 p-3 rounded mb-4">
+            {errorPopup}
+          </div>
+        )}
       </div>
     </div>
   )
