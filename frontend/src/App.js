@@ -4,6 +4,7 @@ import { LoginPage } from "./pages/loginPage";
 import { RegisterPage } from "./pages/registerPage";
 import DashboardMariee from "./pages/dashboardMariee";
 import DashboardPrestatair from "./pages/dashboardPrestatair";
+import PrivateRoute from "./hooks/privateRoute";
 
 
 function App() {
@@ -19,13 +20,25 @@ function App() {
           <Route index="/" element={ <Home /> } />
           <Route path="/login" element={ <LoginPage /> } />
           <Route path="/register" element={ <RegisterPage /> } />
-          <Route path="/espace/mariee" element={ <DashboardMariee /> } />
-          <Route path="/espace/prestatair" element={ <DashboardPrestatair /> } />
-          {/* <Route path="/dashboard" element={ 
-            <Protected >
-              <Dashboard /> 
-            </Protected>
-          } /> */}
+
+          <Route 
+            path="/espace/mariee" 
+            element={
+              <PrivateRoute>
+                <DashboardMariee />
+              </PrivateRoute>
+            }
+          />
+
+          <Route 
+            path="/espace/prestatair" 
+            element={
+              <PrivateRoute>
+                <DashboardPrestatair />
+              </PrivateRoute>
+            } 
+          />
+
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>

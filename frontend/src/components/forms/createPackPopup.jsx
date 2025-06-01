@@ -8,12 +8,11 @@ const CreatePackPopup = ({ onClose }) => {
         packName,
         setPackName,
         serviceTypes,
-        servicesByType,
         selectedServices,
-        handleServiceSelect,
-        removeService,
-        totalPrice,
         handleSubmit,
+        services,
+        handleChange,
+        totalPrice
     } = usePack(onClose);
 
   return (
@@ -44,16 +43,18 @@ const CreatePackPopup = ({ onClose }) => {
               {serviceTypes.map((type) => (
                 <div key={type}>
                   <label className="block text-sm font-semibold mb-1 capitalize">{type}</label>
-                  <select
+                  <select 
+                    value={selectedServices[type] || ""}
+                    onChange={(e) => handleChange(type, e.target.value)}
                     className="w-full border border-gray-300 rounded p-2"
-                    value={selectedServices[type]?.id || ""}
-                    onChange={(e) => handleServiceSelect(type, e.target.value)}
                   >
-                    <option value="">Choisir {type}</option>
-                    {servicesByType[type].map((service) => (
-                      <option key={service.id} value={service.id}>
-                        {service.nom} - {service.tarif}€
-                      </option>
+                    <option value="" disabled>Choisir {type}</option>
+                    {services
+                      .filter((s) => s.type === type)
+                      .map((s) => (
+                        <option key={s.id} value={s.name}>
+                          {s.name} - {s.price}€
+                        </option>
                     ))}
                   </select>
                 </div>
@@ -61,37 +62,15 @@ const CreatePackPopup = ({ onClose }) => {
             </div>
           </div>
 
-          {Object.keys(selectedServices).length > 0 && (
-            <div>
-              <label className="block text-sm font-medium mb-2">Services Sélectionnés</label>
-              <div className="space-y-2">
-                {Object.entries(selectedServices).map(([type, service]) => (
-                  <div key={type} className="flex justify-between items-center bg-gray-100 p-2 rounded">
-                    <span>{service.nom}</span>
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm text-gray-700 font-semibold">{service.tarif}€</span>
-                      <button
-                        type="button"
-                        onClick={() => removeService(type)}
-                        className="text-red-500 hover:underline"
-                      >
-                        Supprimer
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <p className="text-right mt-2 font-bold text-pink-600">
-                Prix Total: {totalPrice.toLocaleString()}€
-              </p>
-            </div>
-          )}
+          <div className="mt-4 text-right font-semibold">
+            Total: {totalPrice.toLocaleString()} €
+          </div>
+
 
           <div className="flex gap-2">
             <button
               type="submit"
               className="flex-1 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600"
-              disabled={!packName || Object.keys(selectedServices).length === 0}
             >
               Créer le Pack
             </button>

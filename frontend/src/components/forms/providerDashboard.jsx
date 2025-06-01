@@ -4,6 +4,7 @@ import { CreatePostPopup } from './createPostPopup'
 import CreateServicePopup from "./createServicePopup";
 import CardServices from "../cardServices";
 import CardPosts from "../cardPosts";
+import DashboardNav from "../dashboardNav";
 
 const serviceTypes = [
   "neggafa",
@@ -123,6 +124,9 @@ export default function ProviderDashboard() {
 
   return (
     <div className="space-y-8 p-4">
+
+      <DashboardNav />
+
       {/* Posts Section */}
       <div className="border rounded-lg shadow">
         <div className="flex justify-between items-center p-4 border-b">
@@ -140,15 +144,6 @@ export default function ProviderDashboard() {
         </div>
         <div >
           <CardPosts />
-          {/* {posts.map((post) => (
-            <div key={post.id} className="border rounded overflow-hidden">
-              <img src={post.image} alt="Post" className="w-full h-48 object-cover" />
-              <div className="p-4">
-                <p className="text-sm text-gray-600 mb-2">{post.description}</p>
-                <p className="text-xs text-gray-400">Publié le {post.date}</p>
-              </div>
-            </div>
-          ))} */}
         </div>
       </div>
 
@@ -169,20 +164,6 @@ export default function ProviderDashboard() {
         </div>
         <div >
           <CardServices />
-          {/* {services.map((service) => (
-            <div key={service.id} className="border rounded p-4">
-              <div className="flex justify-between mb-2">
-                <h3 className="font-semibold">{service.nom}</h3>
-                <span className="text-sm bg-gray-200 px-2 py-1 rounded">{service.tarif}€</span>
-              </div>
-              <p className="text-sm text-gray-600">
-                <strong>Type:</strong> {service.type}
-              </p>
-              <p className="text-sm text-gray-600">
-                <strong>Téléphone:</strong> {service.telephone}
-              </p>
-            </div>
-          ))} */}
         </div>
       </div>
 

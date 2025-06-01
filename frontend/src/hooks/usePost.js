@@ -51,7 +51,7 @@ const usePost = ( onClose ) => {
         form.append("image", formData.image);
         form.append("description", formData.description);
 
-        await axios.post("/posts", form, {
+        const response = await axios.post("/posts", form, {
             headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
@@ -59,9 +59,9 @@ const usePost = ( onClose ) => {
         });
 
         alert("Post créé avec succès !");
+        setPosts([...posts, response.data]);
         setFormData({ image: null, description: "" });
         setImagePreview(null);
-        // fetchPosts();
         onClose();
         } catch (error) {
         if (error.response && error.response.data?.errors) {

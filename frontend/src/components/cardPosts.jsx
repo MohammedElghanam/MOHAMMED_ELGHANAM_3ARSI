@@ -12,7 +12,6 @@ export default function CardPosts() {
                 <img src={`http://127.0.0.1:8000/storage/${post.image}`} alt="Post" className="w-full h-48 object-cover" />
                 <div className="p-4">
                     <p className="text-sm text-gray-600 mb-2">{post.description}</p>
-                    <p className="text-xs text-gray-400">Publié le {post.date}</p>
                 </div>
                 </div>
             ))}

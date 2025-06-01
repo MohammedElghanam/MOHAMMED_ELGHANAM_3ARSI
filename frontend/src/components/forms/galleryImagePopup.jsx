@@ -5,12 +5,14 @@ import useImage from "../../hooks/useImage"
 export default function GalleryImagePopup({ onClose }) {
   
     const {
-        selectedImage,
-        setSelectedImage,
-        imagePreview,
-        setImagePreview,
-        handleImageUpload,
-        handleSubmit,
+      selectedImage,
+      setSelectedImage,
+      imagePreview,
+      setImagePreview,
+      handleImageUpload,
+      handleSubmit,
+      isLoading,
+      errors,
     } = useImage(onClose);
 
   return (
@@ -62,19 +64,21 @@ export default function GalleryImagePopup({ onClose }) {
                 </label>
               </div>
             )}
+            {errors && <p className="text-red-500 text-sm">{errors}</p>}
           </div>
 
           <div className="flex gap-2">
             <button
               type="submit"
-              disabled={!selectedImage}
+              disabled={isLoading}
               className={`flex-1 px-4 py-2 rounded-md text-white ${
                 selectedImage
                   ? "bg-blue-600 hover:bg-blue-700"
                   : "bg-blue-300 cursor-not-allowed"
               }`}
             >
-              Ajouter
+              {isLoading ? "Loagind ..." : "Ajouter"}
+              
             </button>
             <button
               type="button"

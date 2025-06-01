@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axios from "../api/axios"; 
 import { useNavigate } from "react-router-dom";
 
 const useLogin = () => {
@@ -38,11 +38,6 @@ const useLogin = () => {
       const response = await axios.post(`/login`, {
         email,
         password,
-      }, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
       });
 
       if (response.status === 201) {

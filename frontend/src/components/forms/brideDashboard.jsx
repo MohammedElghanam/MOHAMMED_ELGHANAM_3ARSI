@@ -3,6 +3,9 @@ import CreatePackPopup from "./createPackPopup"
 import { CreateWeddingForm } from "./createWeddingForm"
 import GalleryImagePopup from "./galleryImagePopup"
 import GalleryVideoPopup from "./galleryVideoPopup"
+import CardVideos from "../cardVideos"
+import CardImages from "../cardImages"
+import DashboardNav from "../dashboardNav"
 
 // Simple icons as SVG inline for example (you can replace with your own)
 const PackageIcon = () => (
@@ -98,6 +101,7 @@ export default function BrideDashboard() {
 
   return (
     <div className="space-y-8 p-4 max-w-6xl mx-auto">
+      <DashboardNav />
       {/* Packs Section */}
       <div className="border rounded-lg shadow-sm p-6">
         <div className="flex justify-between items-center mb-4">
@@ -200,15 +204,8 @@ export default function BrideDashboard() {
                 Ajouter Image
               </button>
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              {galleryImages.map((img) => (
-                <img
-                  key={img.id}
-                  src={img.url || "/placeholder.svg"}
-                  alt={img.name}
-                  className="w-full h-24 object-cover rounded-lg"
-                />
-              ))}
+            <div>
+              <CardImages />
             </div>
           </div>
 
@@ -224,8 +221,9 @@ export default function BrideDashboard() {
                 Ajouter Vidéo
               </button>
             </div>
-            <div className="space-y-2">
-              {galleryVideos.map((video) => (
+            <div>
+              <CardVideos />
+              {/* {galleryVideos.map((video) => (
                 <div
                   key={video.id}
                   className="flex items-center gap-2 p-2 bg-gray-50 rounded"
@@ -233,14 +231,11 @@ export default function BrideDashboard() {
                   <VideoIcon className="w-4 h-4 text-gray-500" />
                   <span className="text-sm">{video.name}</span>
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
         </div>
       </div>
-
-      {/* Note: Popup components are omitted since you asked only for the main component */}
-      {/* You can implement your own modals/popups for create pack/wedding/image/video */}
 
       {/* Example of simple popup buttons - just placeholders */}
       {showCreatePack && (

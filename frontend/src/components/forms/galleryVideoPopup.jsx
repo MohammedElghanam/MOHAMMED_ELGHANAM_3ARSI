@@ -8,6 +8,8 @@ export default function GalleryVideoPopup({ onClose }) {
         setSelectedVideo,
         handleVideoUpload,
         handleSubmit,
+        errors,
+        isLoading,
     } = useVideo(onClose);
 
     return (
@@ -54,17 +56,18 @@ export default function GalleryVideoPopup({ onClose }) {
                     </label>
                 </div>
                 )}
+                {errors.video && <p className="text-red-500 text-sm">{errors.video}</p>}
             </div>
 
             <div className="flex gap-2">
                 <button
                 type="submit"
-                disabled={!selectedVideo}
+                disabled={isLoading}
                 className={`flex-1 px-4 py-2 rounded text-white ${
                     selectedVideo ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-300 cursor-not-allowed"
                 }`}
                 >
-                Ajouter
+                    {isLoading ? "loading ..." : "Ajouter"} 
                 </button>
                 <button
                 type="button"
