@@ -95,7 +95,7 @@ function useImage(onClose) {
   
   useEffect(() => {
     fetchImages();
-  }, []);
+  }, [images]);
 
   return {
     selectedImage,

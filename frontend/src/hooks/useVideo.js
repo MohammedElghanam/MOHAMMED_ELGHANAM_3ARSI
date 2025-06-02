@@ -83,9 +83,9 @@ function useVideo(onClose) {
         }
     };
 
-    // useEffect(()=>{
-    //     fetchVideos();
-    // },[videos])
+    useEffect(()=>{
+        fetchVideos();
+    },[videos])
 
     return {
         selectedVideo,

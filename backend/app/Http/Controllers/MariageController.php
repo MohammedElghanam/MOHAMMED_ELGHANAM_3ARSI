@@ -41,7 +41,7 @@ class MariageController extends Controller
             'city' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'guests_number' => 'required|integer|min:1|max:1000',
-            'package' => 'required|string|in:basic,premium,vip'
+            'package' => 'required|string'
         ]);
 
         $wedding = $request->user()->mariages()->create($validated);

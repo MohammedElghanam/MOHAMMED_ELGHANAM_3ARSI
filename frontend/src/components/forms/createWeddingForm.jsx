@@ -8,6 +8,9 @@ export function CreateWeddingForm({ onClose }) {
         setFormData,
         packs,
         handleSubmit,
+        errors,
+        isLoading,
+        packages,
     } = useMariage(onClose);
 
   return (
@@ -40,10 +43,10 @@ export function CreateWeddingForm({ onClose }) {
                   type="text"
                   placeholder="Fatima"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  value={formData.nomMariee}
-                  onChange={(e) => setFormData({ ...formData, nomMariee: e.target.value })}
-                  required
+                  value={formData.bride_name}
+                  onChange={(e) => setFormData({ ...formData, bride_name: e.target.value })}
                 />
+              {errors.bride_name && <p className="text-red-500 text-sm">{errors.bride_name}</p>}
               </div>
 
               {/* Groom's Name */}
@@ -54,10 +57,10 @@ export function CreateWeddingForm({ onClose }) {
                   type="text"
                   placeholder="Ahmed"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  value={formData.nomMarie}
-                  onChange={(e) => setFormData({ ...formData, nomMarie: e.target.value })}
-                  required
+                  value={formData.groom_name}
+                  onChange={(e) => setFormData({ ...formData, groom_name: e.target.value })}
                 />
+              {errors.groom_name && <p className="text-red-500 text-sm">{errors.groom_name}</p>}
               </div>
 
               {/* Date Field */}
@@ -70,10 +73,10 @@ export function CreateWeddingForm({ onClose }) {
                   id="date"
                   type="date"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
-                  value={formData.date}
-                  onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                  required
+                  value={formData.wedding_date}
+                  onChange={(e) => setFormData({ ...formData, wedding_date: e.target.value })}
                 />
+              {errors.wedding_date && <p className="text-red-500 text-sm">{errors.wedding_date}</p>}
               </div>
 
               {/* Location Field */}
@@ -86,10 +89,10 @@ export function CreateWeddingForm({ onClose }) {
                   id="lieu"
                   placeholder="Lieu du mariage"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
-                  value={formData.lieu}
-                  onChange={(e) => setFormData({ ...formData, lieu: e.target.value })}
-                  required
+                  value={formData.location}
+                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                 />
+              {errors.location && <p className="text-red-500 text-sm">{errors.location}</p>}
               </div>
 
                 <div className="space-y-2">
@@ -99,10 +102,10 @@ export function CreateWeddingForm({ onClose }) {
                         type="text"
                         placeholder="Casablanca"
                         className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-                        value={formData.ville}
-                        onChange={(e) => setFormData({ ...formData, ville: e.target.value })}
-                        required
+                        value={formData.city}
+                        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                     />
+                        {errors.city && <p className="text-red-500 text-sm">{errors.city}</p>}
                 </div>
 
               {/* Phone Field */}
@@ -116,10 +119,10 @@ export function CreateWeddingForm({ onClose }) {
                   type="tel"
                   placeholder="Numéro de téléphone"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
-                  value={formData.telephone}
-                  onChange={(e) => setFormData({ ...formData, telephone: e.target.value })}
-                  required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 />
+                {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
               </div>
 
               {/* Guests Field */}
@@ -133,10 +136,10 @@ export function CreateWeddingForm({ onClose }) {
                   type="number"
                   placeholder="Nombre d'invités"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
-                  value={formData.invites}
-                  onChange={(e) => setFormData({ ...formData, invites: e.target.value })}
-                  required
+                  value={formData.guests_number}
+                  onChange={(e) => setFormData({ ...formData, guests_number: e.target.value })}
                 />
+              {errors.guests_number && <p className="text-red-500 text-sm">{errors.guests_number}</p>}
               </div>
             </div>
 
@@ -144,17 +147,18 @@ export function CreateWeddingForm({ onClose }) {
             <div className="space-y-2">
               <label className="text-sm font-medium">Sélection du Pack</label>
               <select
-                value={formData.pack}
-                onChange={(e) => setFormData({ ...formData, pack: e.target.value })}
+                value={formData.package}
+                onChange={(e) => setFormData({ ...formData, package: e.target.value })}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
               >
                 <option value="">Choisissez un pack</option>
-                {packs.map((pack) => (
-                  <option key={pack.id} value={pack.id}>
-                    {pack.name} - {pack.price}€
+                {packages.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name} - {item.price}€
                   </option>
                 ))}
               </select>
+              {errors.package && <p className="text-red-500 text-sm">{errors.package}</p>}
             </div>
 
             {/* Buttons */}
@@ -162,8 +166,9 @@ export function CreateWeddingForm({ onClose }) {
               <button
                 type="submit"
                 className="flex-1 bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded-md transition"
+                disabled={isLoading}
               >
-                Créer le Mariage
+                {isLoading ? " Sending ... " : "Créer le Mariage"}
               </button>
               <button
                 type="button"
