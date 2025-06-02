@@ -6,6 +6,7 @@ import GalleryVideoPopup from "./galleryVideoPopup"
 import CardVideos from "../cardVideos"
 import CardImages from "../cardImages"
 import DashboardNav from "../dashboardNav"
+import CardPackages from "../cardPackages"
 
 // Simple icons as SVG inline for example (you can replace with your own)
 const PackageIcon = () => (
@@ -117,26 +118,8 @@ export default function BrideDashboard() {
             Créer Pack
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {packs.map((pack) => (
-            <div
-              key={pack.id}
-              className="p-4 bg-pink-50 border border-pink-200 rounded shadow-sm"
-            >
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="font-semibold text-pink-800">{pack.nom}</h3>
-                <span className="bg-pink-500 text-white px-2 py-1 rounded">{pack.prixTotal}€</span>
-              </div>
-              <div>
-                <p className="text-sm font-medium mb-1">Services inclus:</p>
-                <ul className="text-sm text-gray-700 list-disc list-inside">
-                  {pack.services.map((service, idx) => (
-                    <li key={idx}>{service}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
+        <div>
+          <CardPackages />
         </div>
       </div>
 

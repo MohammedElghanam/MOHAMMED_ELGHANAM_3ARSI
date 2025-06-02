@@ -20,6 +20,7 @@ const usePack = (onClose) => {
     const [selectedServices, setSelectedServices] = useState({});
     const [price, setPrice] = useState(0);
     const [isLoading, setLoading] = useState(false);
+    const [packages, setPackages] = useState([]);
     
     
 
@@ -255,12 +256,31 @@ const usePack = (onClose) => {
             console.log("Réponse du serveur:", response.data);
             alert("Pack bien ajouté !");
             setLoading(false);
+            setPackages([...packages, response.data]);
             onClose();
         } catch (error) {
             console.error("Erreur lors de l'envoi:", error);
             alert("Erreur lors de l'ajout du pack");
         }
     };
+
+    const fetchPackages = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await axios.get("/packages", {
+                headers: {
+                Authorization: `Bearer ${token}`,
+                },
+            });
+            setPackages(response.data);
+        } catch (error) {
+            console.error("Erreur lors du chargement des services:", error);
+        }
+    }
+
+    useEffect(()=>{
+        fetchPackages();
+    },[packages])
 
     return {
         name,
@@ -272,6 +292,7 @@ const usePack = (onClose) => {
         handleChange,
         price,
         isLoading,
+        packages,
     }
 }
 
