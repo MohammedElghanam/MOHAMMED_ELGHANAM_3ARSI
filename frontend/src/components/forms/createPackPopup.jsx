@@ -5,14 +5,15 @@ import usePack from "../../hooks/usePack";
 const CreatePackPopup = ({ onClose }) => {
   
     const {
-        packName,
-        setPackName,
+        name,
+        setName,
         serviceTypes,
         selectedServices,
         handleSubmit,
         services,
         handleChange,
-        totalPrice
+        price,
+        isLoading,
     } = usePack(onClose);
 
   return (
@@ -31,9 +32,8 @@ const CreatePackPopup = ({ onClose }) => {
               type="text"
               className="w-full border border-gray-300 rounded p-2"
               placeholder="Mon pack personnalisé"
-              value={packName}
-              onChange={(e) => setPackName(e.target.value)}
-              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
@@ -63,7 +63,7 @@ const CreatePackPopup = ({ onClose }) => {
           </div>
 
           <div className="mt-4 text-right font-semibold">
-            Total: {totalPrice.toLocaleString()} €
+            Total: {price.toLocaleString()} €
           </div>
 
 
@@ -71,8 +71,9 @@ const CreatePackPopup = ({ onClose }) => {
             <button
               type="submit"
               className="flex-1 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600"
+              disabled={isLoading}
             >
-              Créer le Pack
+              {isLoading ? " Sending ..." : "Créer le Pack"}
             </button>
             <button
               type="button"

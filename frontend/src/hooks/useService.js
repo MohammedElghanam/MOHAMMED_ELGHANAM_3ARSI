@@ -54,16 +54,16 @@ const useService = (onClose) => {
       onClose();
     } catch (error) {
       if (error.response) {
-            if (error.response.data.errors) {
-            setErrors(error.response.data.errors);
-            } else if (error.response.data.message) {
-            setErrorPopup(error.response.data.message);
-            } else {
-            setErrorPopup("Une erreur est survenue.");
-            }
+        if (error.response.data.errors) {
+          setErrors(error.response.data.errors);
+        } else if (error.response.data.message) {
+          setErrorPopup(error.response.data.message);
         } else {
-            setErrorPopup("Impossible de se connecter au serveur.");
+          setErrorPopup("Une erreur est survenue.");
         }
+      } else {
+          setErrorPopup("Impossible de se connecter au serveur.");
+      }
     }
   };
 

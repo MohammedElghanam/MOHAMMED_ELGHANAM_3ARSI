@@ -3,56 +3,26 @@ import axios from "../api/axios";
 
 const usePack = (onClose) => {
 
-    const servicesByType = {
-        neggafa: [
-            { id: "n1", nom: "Neggafa Traditionnelle Fatima", tarif: 800 },
-            { id: "n2", nom: "Neggafa Moderne Aicha", tarif: 1000 },
-            { id: "n3", nom: "Neggafa Royale Khadija", tarif: 1200 },
-        ],
-        "groupe musique": [
-            { id: "m1", nom: "Orchestre Andalou", tarif: 1500 },
-            { id: "m2", nom: "Groupe Chaabi", tarif: 1200 },
-            { id: "m3", nom: "DJ Moderne", tarif: 800 },
-        ],
-        traiteur: [
-            { id: "t1", nom: "Traiteur Premium", tarif: 2500 },
-            { id: "t2", nom: "Traiteur Traditionnel", tarif: 2000 },
-            { id: "t3", nom: "Traiteur Luxe", tarif: 3500 },
-        ],
-        "make up": [
-            { id: "mk1", nom: "Make Up Pro Studio", tarif: 300 },
-            { id: "mk2", nom: "Beauty Artist Casablanca", tarif: 400 },
-            { id: "mk3", nom: "Glamour Make Up", tarif: 500 },
-        ],
-        "hair style": [
-            { id: "h1", nom: "Coiffure Elegance", tarif: 200 },
-            { id: "h2", nom: "Hair Studio Moderne", tarif: 250 },
-            { id: "h3", nom: "Salon Royal", tarif: 300 },
-        ],
-        "salle de fête": [
-            { id: "s1", nom: "Villa des Roses", tarif: 3000 },
-            { id: "s2", nom: "Palais des Fêtes", tarif: 4000 },
-            { id: "s3", nom: "Salle Crystal", tarif: 2500 },
-        ],
-        photographer: [
-            { id: "p1", nom: "Photo Dreams", tarif: 1200 },
-            { id: "p2", nom: "Wedding Photographer Pro", tarif: 1500 },
-            { id: "p3", nom: "Studio Vision", tarif: 1000 },
-        ],
-        hotel: [
-            { id: "ht1", nom: "Hotel Luxury Casablanca", tarif: 5000 },
-            { id: "ht2", nom: "Resort Marrakech", tarif: 7000 },
-            { id: "ht3", nom: "Hotel Boutique Rabat", tarif: 4000 },
-        ],
-        "lune de miel": [
-            { id: "l1", nom: "Voyage Romantique Agadir", tarif: 3000 },
-            { id: "l2", nom: "Séjour Marrakech", tarif: 2500 },
-            { id: "l3", nom: "Escapade Chefchaouen", tarif: 2000 },
-        ],
+    const fieldMap = {
+        neggafa: "Neğafa",
+        music_band: "Groupe Musical",
+        caterer: "Traiteur",
+        makeup: "Maquillage",
+        hair_style: "Coiffure",
+        party_room: "Salle de fête",
+        photographer: "Photographe",
+        hotel: "Hôtel",
+        honeymoon: "Voyage de noces"
     };
 
-    // const serviceTypes = Object.keys(servicesByType);
-    const [packName, setPackName] = useState("");
+
+    const [name, setName] = useState("");
+    const [selectedServices, setSelectedServices] = useState({});
+    const [price, setPrice] = useState(0);
+    const [isLoading, setLoading] = useState(false);
+    
+    
+
     const [services, setServices] = useState([
         {
             "id": 1,
@@ -78,7 +48,7 @@ const usePack = (onClose) => {
             "id": 3,
             "user_id": 11,
             "name": " t1 Sultana",
-            "type": "traiteur",
+            "type": "caterer",
             "phone": "0616435562",
             "price": "499",
             "created_at": "2025-06-01T00:28:45.000000Z",
@@ -88,7 +58,7 @@ const usePack = (onClose) => {
             "id": 4,
             "user_id": 11,
             "name": " t2 Derraj",
-            "type": "traiteur",
+            "type": "caterer",
             "phone": "0622341943",
             "price": "1999",
             "created_at": "2025-06-01T16:10:41.000000Z",
@@ -98,7 +68,7 @@ const usePack = (onClose) => {
             "id": 5,
             "user_id": 11,
             "name": "groupe musique 1",
-            "type": "groupe musique",
+            "type": "music_band",
             "phone": "0616435562",
             "price": "499",
             "created_at": "2025-06-01T00:28:45.000000Z",
@@ -108,7 +78,7 @@ const usePack = (onClose) => {
             "id": 6,
             "user_id": 11,
             "name": "groupe musique 2",
-            "type": "groupe musique",
+            "type": "music_band",
             "phone": "0622341943",
             "price": "1999",
             "created_at": "2025-06-01T16:10:41.000000Z",
@@ -118,7 +88,7 @@ const usePack = (onClose) => {
             "id": 7,
             "user_id": 11,
             "name": "make up 1",
-            "type": "make up",
+            "type": "makeup",
             "phone": "0616435562",
             "price": "499",
             "created_at": "2025-06-01T00:28:45.000000Z",
@@ -128,7 +98,7 @@ const usePack = (onClose) => {
             "id": 8,
             "user_id": 11,
             "name": "make up 2",
-            "type": "make up",
+            "type": "makeup",
             "phone": "0622341943",
             "price": "1999",
             "created_at": "2025-06-01T16:10:41.000000Z",
@@ -138,7 +108,7 @@ const usePack = (onClose) => {
             "id": 9,
             "user_id": 11,
             "name": "hair style 1",
-            "type": "hair style",
+            "type": "hair_style",
             "phone": "0616435562",
             "price": "499",
             "created_at": "2025-06-01T00:28:45.000000Z",
@@ -147,8 +117,8 @@ const usePack = (onClose) => {
         {
             "id": 10,
             "user_id": 11,
-            "name": "hair style",
-            "type": "hair style 2",
+            "name": "hair style 2",
+            "type": "hair_style",
             "phone": "0622341943",
             "price": "1999",
             "created_at": "2025-06-01T16:10:41.000000Z",
@@ -158,7 +128,7 @@ const usePack = (onClose) => {
             "id": 11,
             "user_id": 11,
             "name": "salle de fête 1",
-            "type": "salle de fête",
+            "type": "party_room",
             "phone": "0616435562",
             "price": "499",
             "created_at": "2025-06-01T00:28:45.000000Z",
@@ -168,7 +138,7 @@ const usePack = (onClose) => {
             "id": 12,
             "user_id": 11,
             "name": "salle de fête 2",
-            "type": "salle de fête",
+            "type": "party_room",
             "phone": "0622341943",
             "price": "1999",
             "created_at": "2025-06-01T16:10:41.000000Z",
@@ -218,7 +188,7 @@ const usePack = (onClose) => {
             "id": 17,
             "user_id": 11,
             "name": "lune de miel 1",
-            "type": "lune de miel",
+            "type": "honeymoon",
             "phone": "0616435562",
             "price": "499",
             "created_at": "2025-06-01T00:28:45.000000Z",
@@ -228,7 +198,7 @@ const usePack = (onClose) => {
             "id": 18,
             "user_id": 11,
             "name": "lune de miel 2",
-            "type": "lune de miel",
+            "type": "honeymoon",
             "phone": "0622341943",
             "price": "1999",
             "created_at": "2025-06-01T16:10:41.000000Z",
@@ -237,8 +207,6 @@ const usePack = (onClose) => {
     ]);
 
     const serviceTypes = [...new Set(services.map((s) => s.type))];
-    const [selectedServices, setSelectedServices] = useState({});
-    const [totalPrice, setTotalPrice] = useState(0);
 
     const handleChange = (type, value) => {
         const serviceName = value;
@@ -255,77 +223,55 @@ const usePack = (onClose) => {
             console.log("total:", total);
             
 
-            setTotalPrice(total);
+            setPrice(total);
             return updated;
         });
     };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        if (!name.trim()) {
+            alert("Le nom du pack est obligatoire");
+            return;
+        }
+        
+        setLoading(true);
+        
         const formData = {
             ...selectedServices,
-            packName,
-            totalPrice
+            name,
+            price
         }
 
-        console.log("values selcted:", formData);
+        try {
+            const token = localStorage.getItem("token");
+            const response = await axios.post('/packages', formData, {
+                headers: {
+                Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log("Réponse du serveur:", response.data);
+            alert("Pack bien ajouté !");
+            setLoading(false);
+            onClose();
+        } catch (error) {
+            console.error("Erreur lors de l'envoi:", error);
+            alert("Erreur lors de l'ajout du pack");
+        }
     };
 
-    // const handleServiceSelect = (type, id) => {
-    //     const service = servicesByType[type].find((s) => s.id === id);
-    //     if (service) {
-    //     setSelectedServices({ ...selectedServices, [type]: service });
-    //     }
-    // };
-
-    // const removeService = (type) => {
-    //     const newServices = { ...selectedServices };
-    //     delete newServices[type];
-    //     setSelectedServices(newServices);
-    // };
-
-    // const totalPrice = Object.values(selectedServices).reduce((acc, s) => acc + s.tarif, 0);
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (packName && Object.keys(selectedServices).length > 0) {
-    //         alert(`Pack "${packName}" créé avec succès !\nServices sélectionnés : ${JSON.stringify(selectedServices, null, 2)}\nPrix total : ${totalPrice}€`);
-    //         onClose();
-    //     }
-    // };
-
-    // const allServices = async () => {
-    //     try {
-    //         const response = await axios("/allservices", {
-    //             headers: {
-    //                 Accept: "application/json",
-    //                 "Content-Type": "application/json",
-    //             },
-    //         });
-    //         console.log("services: ", response.data);
-            
-    //         setServices(response.data);
-    //     } catch (error) {
-    //         console.error("Erreur lors du chargement des services:", error);
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     allServices();
-    // }, [services]);
-
-
     return {
-        packName,
-        setPackName,
+        name,
+        setName,
         serviceTypes,
-        servicesByType,
         selectedServices,
         handleSubmit,
         services,
         handleChange,
-        totalPrice
+        price,
+        isLoading,
     }
 }
 
