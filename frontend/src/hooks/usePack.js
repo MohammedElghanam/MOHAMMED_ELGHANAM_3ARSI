@@ -207,6 +207,8 @@ const usePack = (onClose) => {
         }
     ]);
 
+    // const [services, setServices] = useState([]);
+
     const serviceTypes = [...new Set(services.map((s) => s.type))];
 
     const handleChange = (type, value) => {
@@ -278,9 +280,25 @@ const usePack = (onClose) => {
         }
     }
 
+    const fetchServices = async () => {
+        try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get("/services", {
+            headers: {
+            Authorization: `Bearer ${token}`,
+            },
+        });
+        setServices(response.data);
+        } catch (error) {
+        console.error("Erreur lors du chargement des services:", error);
+        }
+    };
+
+
     useEffect(()=>{
+        // fetchServices();
         fetchPackages();
-    },[packages])
+    },[])
 
     return {
         name,

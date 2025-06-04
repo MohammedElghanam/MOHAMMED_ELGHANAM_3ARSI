@@ -92,7 +92,7 @@ const usePost = ( onClose ) => {
 
     useEffect(() => {
       fetchPosts();
-    }, [posts]);
+    }, []);
     
     return {
         formData,

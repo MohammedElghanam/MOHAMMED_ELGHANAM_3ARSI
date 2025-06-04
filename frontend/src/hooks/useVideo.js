@@ -85,7 +85,7 @@ function useVideo(onClose) {
 
     useEffect(()=>{
         fetchVideos();
-    },[videos])
+    },[])
 
     return {
         selectedVideo,

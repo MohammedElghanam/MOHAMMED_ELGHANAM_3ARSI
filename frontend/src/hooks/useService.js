@@ -83,7 +83,7 @@ const useService = (onClose) => {
 
   useEffect(() => {
     fetchServices();
-  }, [services]);
+  }, []);
 
   return {
     formData,

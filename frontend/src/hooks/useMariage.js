@@ -120,7 +120,7 @@ function useMariage(onClose) {
   useEffect(() => {
     fetchPackages();
     fetchMariages();
-  }, [mariages]);
+  }, []);
 
   return {
     formData,

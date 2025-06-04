@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "../api/axios"; 
 
 const useRegister = () => {
   const [name, setName] = useState("");

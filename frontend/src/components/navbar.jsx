@@ -14,17 +14,17 @@ export default function Navbar() {
                             </div>
 
                             <div class=" flex items-center justify-center gap-6">
-                                <a href="#" class="text-gray-600 text-sm font-semibold hover:text-pink-500 mr-4">ACCUEIL</a>
-                                <a href="#" class="text-gray-600 text-sm font-semibold hover:text-pink-500 mr-4">À PROPOS DE NOUS</a>
-                                <a href="#" class="text-gray-600 text-sm font-semibold hover:text-pink-500 mr-4">SERVICES</a>
-                                <a href="#" class="text-gray-600 text-sm font-semibold hover:text-pink-500">PACKS</a>
-                                <a href="#" class="text-gray-600 text-sm font-semibold hover:text-pink-500">PORTFLIO</a>
+                                <a href="#home" class="text-gray-600 text-sm font-semibold hover:text-pink-500 mr-4">ACCUEIL</a>
+                                <a href="#apropo" class="text-gray-600 text-sm font-semibold hover:text-pink-500 mr-4">À PROPOS DE NOUS</a>
+                                <a href="#services" class="text-gray-600 text-sm font-semibold hover:text-pink-500 mr-4">SERVICES</a>
+                                <a href="#pack" class="text-gray-600 text-sm font-semibold hover:text-pink-500">PACKS</a>
+                                <a href="#portfolio" class="text-gray-600 text-sm font-semibold hover:text-pink-500">PORTFLIO</a>
                             </div>
 
                         <a href='/login' className=" relative flex items-center justify-center">
                             <div className=" w-8 h-2 bg-white absolute right-10"></div>
                             <p
-                                className="text-gray-800 text-sm font-semibold border px-10 py-3 rounded-full text-pink-500 border-pink-500 bg-white"
+                                className=" text-sm font-semibold border px-10 py-3 rounded-full text-pink-500 border-pink-500 bg-white"
                             >
                                 Sign up
                             </p>

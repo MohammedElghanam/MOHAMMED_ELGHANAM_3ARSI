@@ -4,7 +4,7 @@ import { motion  } from "framer-motion";
 export default function HomeComponent() {
   return (
     <>
-        <main className=" relative ">
+        <main id='home' className=" relative ">
             
             <div className="grid grid-cols-1 lg:grid-cols-2 h-full items-center ">
 

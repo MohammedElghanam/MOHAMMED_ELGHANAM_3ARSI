@@ -8,6 +8,7 @@ function useImage(onClose) {
   const [errors, setErrors] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+
   const validateImage = (file) => {
     const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
     const maxSize = 2 * 1024 * 1024; // 2MB
@@ -95,7 +96,7 @@ function useImage(onClose) {
   
   useEffect(() => {
     fetchImages();
-  }, [images]);
+  }, []);
 
   return {
     selectedImage,

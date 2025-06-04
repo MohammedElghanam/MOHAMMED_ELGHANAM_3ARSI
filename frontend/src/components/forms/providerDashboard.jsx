@@ -8,14 +8,14 @@ import DashboardNav from "../dashboardNav";
 
 const serviceTypes = [
   "neggafa",
-  "groupe musique",
-  "traiteur",
-  "make up",
-  "hair style",
-  "salle de fête",
+  "music_band",
+  "caterer",
+  "makeup",
+  "hair_style",
+  "party_room",
   "photographer",
   "hotel",
-  "lune de miel",
+  "honeymoon",
 ];
 
 const mockPosts = [
